@@ -32,6 +32,25 @@ header.textContent = "PuppyGram";
 
 var mainContainer = document.querySelector(".main-container");
 
+var modal = document.querySelector(".myModal");
+var button = document.querySelector(".mybutton");
+
+var span = document.querySelector(".close");
+
+button.addEventListener("click", function() {
+  modal.style.display = "block";
+});
+
+span.addEventListener("click", function() {
+  modal.style.display = "none";
+});
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
 for (var image of images) {
   var listItem = document.createElement("li");
   listItem.classList.add("dog-list");
