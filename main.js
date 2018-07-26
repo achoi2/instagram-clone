@@ -35,6 +35,7 @@ var pictureContainer = document.createElement('div');
 var footer = document.createElement('div');
 
 var modal = document.querySelector('.modal');
+var imageSrc = document.querySelector('.imageSrc')
 
 header.textContent = 'PuppyGram';
 
@@ -54,14 +55,21 @@ for (var i = 0; i < images.length; i++) {
         var thumbNailDiv = document.createElement('div');
         var newImage = document.createElement('img');
         var image = images[i];
-        console.log(image);
-        var toggleHandler = function() {
+       
+
+        var toggleHandler = function(event) {
             modal.classList.toggle('show-modal');
+            imageSrc.setAttribute('src', image.link)
+            console.log(event);
         };
 
-        selectImage.addEventListener('click', toggleHandler);
+        
+
+        newImage.addEventListener('click', toggleHandler);
+        // newimage.addEventListener('click', closeModal)
         newImage.src = image.link;
         selectImage.appendChild(thumbNailDiv);
         thumbNailDiv.appendChild(newImage);
+        
     })();
 }
