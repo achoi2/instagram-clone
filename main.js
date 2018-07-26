@@ -35,7 +35,7 @@ var pictureContainer = document.createElement('div');
 var footer = document.createElement('div');
 
 var modal = document.querySelector('.modal');
-var imageSrc = document.querySelector('.imageSrc')
+var imageSrc = document.querySelector('.imageSrc');
 
 header.textContent = 'PuppyGram';
 
@@ -49,27 +49,41 @@ document.querySelector('body').appendChild(mainContainer);
 document.querySelector('.main-container').appendChild(pictureContainer);
 document.querySelector('body').appendChild(footer);
 
-for (var i = 0; i < images.length; i++) {
-    (function() {
-        var selectImage = document.querySelector('.picture-container');
-        var thumbNailDiv = document.createElement('div');
-        var newImage = document.createElement('img');
-        var image = images[i];
-       
+// for (var i = 0; i < images.length; i++) {
+//     (function() {
+//         var selectImage = document.querySelector('.picture-container');
+//         var thumbNailDiv = document.createElement('div');
+//         var newImage = document.createElement('img');
+//         var image = images[i];
 
-        var toggleHandler = function(event) {
-            modal.classList.toggle('show-modal');
-            imageSrc.setAttribute('src', image.link)
-            console.log(event);
-        };
+//         var toggleHandler = function(event) {
+//             modal.classList.toggle('show-modal');
+//             imageSrc.setAttribute('src', image.link)
+//             console.log(event);
+//         };
 
-        
+//         newImage.addEventListener('click', toggleHandler);
+//         // newimage.addEventListener('click', closeModal)
+//         newImage.src = image.link;
+//         selectImage.appendChild(thumbNailDiv);
+//         thumbNailDiv.appendChild(newImage);
 
-        newImage.addEventListener('click', toggleHandler);
-        // newimage.addEventListener('click', closeModal)
-        newImage.src = image.link;
-        selectImage.appendChild(thumbNailDiv);
-        thumbNailDiv.appendChild(newImage);
-        
-    })();
-}
+//     })();
+// }
+
+images.forEach(function(image, i) {
+    var selectImage = document.querySelector('.picture-container');
+    var thumbNailDiv = document.createElement('div');
+    var newImage = document.createElement('img');
+
+    var toggleHandler = function(event) {
+        modal.classList.toggle('show-modal');
+        imageSrc.setAttribute('src', image.link);
+        console.log(event);
+    };
+
+    newImage.addEventListener('click', toggleHandler);
+    newImage.src = image.link;
+    selectImage.appendChild(thumbNailDiv);
+    thumbNailDiv.appendChild(newImage);
+});
