@@ -29,61 +29,45 @@ var images = [
     }
 ];
 
-var header = document.createElement('div');
-var mainContainer = document.createElement('div');
-var pictureContainer = document.createElement('div');
-var footer = document.createElement('div');
+var header = $('<div>');
+var mainContainer = $('<div>');
+var pictureContainer = $('<div>');
+var footer = $('<div>');
 
-var modal = document.querySelector('.modal');
-var imageSrc = document.querySelector('.imageSrc');
 
-header.textContent = 'PuppyGram';
 
-header.classList.add('header-text');
-mainContainer.classList.add('main-container');
-pictureContainer.classList.add('picture-container');
-footer.classList.add('footer');
+var modal = $('.modal');
+var imageSrc = $('.imageSrc');
 
-document.querySelector('body').appendChild(header);
-document.querySelector('body').appendChild(mainContainer);
-document.querySelector('.main-container').appendChild(pictureContainer);
-document.querySelector('body').appendChild(footer);
+header.text('PuppyGram');
 
-// for (var i = 0; i < images.length; i++) {
-//     (function() {
-//         var selectImage = document.querySelector('.picture-container');
-//         var thumbNailDiv = document.createElement('div');
-//         var newImage = document.createElement('img');
-//         var image = images[i];
+header.addClass('header-text');
 
-//         var toggleHandler = function(event) {
-//             modal.classList.toggle('show-modal');
-//             imageSrc.setAttribute('src', image.link)
-//             console.log(event);
-//         };
+mainContainer.addClass('main-container');
+pictureContainer.addClass('picture-container');
+footer.addClass('footer');
 
-//         newImage.addEventListener('click', toggleHandler);
-//         // newimage.addEventListener('click', closeModal)
-//         newImage.src = image.link;
-//         selectImage.appendChild(thumbNailDiv);
-//         thumbNailDiv.appendChild(newImage);
+$('body').append(header);
+$('body').append(mainContainer);
+$('.main-container').append(pictureContainer);
+$('body').append(footer);
 
-//     })();
-// }
 
 images.forEach(function(image, i) {
-    var selectImage = document.querySelector('.picture-container');
-    var thumbNailDiv = document.createElement('div');
-    var newImage = document.createElement('img');
+    var selectImage = $('.picture-container');
+    var thumbNailDiv = $('<div>');
+    var newImage = $('<img>');
+    
 
-    var toggleHandler = function(event) {
-        modal.classList.toggle('show-modal');
-        imageSrc.setAttribute('src', image.link);
+    var toggleHandler = function(event) {   
+        modal.toggleClass('show-modal')
+        imageSrc.attr('src', image.link);
         console.log(event);
     };
 
-    newImage.addEventListener('click', toggleHandler);
-    newImage.src = image.link;
-    selectImage.appendChild(thumbNailDiv);
-    thumbNailDiv.appendChild(newImage);
+    newImage.on('click', toggleHandler);    
+    newImage.attr('src', image.link)
+    selectImage.append(thumbNailDiv);
+    thumbNailDiv.append(newImage);
+
 });
